@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+.verifyotppopup {
+  @apply bg-white rounded-lg shadow-lg px-4 flex justify-center items-center;
+  width: 300px;
+
+  .otpform {
+    @apply prose px-4 py-7;
+    h3 {
+      @apply text-gray-600 mb-6;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}

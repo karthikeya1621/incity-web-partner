@@ -1,74 +1,75 @@
 @import "./variables.scss";
 
 .herobanner {
-  @apply w-full relative pb-3;
-  min-height: 600px;
+  @apply w-full relative py-6 mt-6;
 
-  & .dummy::after {
-    content: "";
-    @apply absolute top-0 left-0 w-full bg-gray-900 opacity-60 transition-opacity;
-    height: 480px;
-  }
+  .img {
+    @apply relative h-full;
 
-  & > .img {
-    @apply absolute w-full;
-    height: 480px;
-  }
-
-  .searchbox {
-    @apply relative w-full my-4 flex flex-col justify-center items-center;
-    height: 300px;
-
-    .searchbar {
-      @apply relative mb-2;
-      input {
-        @apply pl-3 py-2 pr-8 rounded-lg;
-        width: 400px;
-        max-width: calc(100vw - 32px);
-      }
-      span {
-        @apply absolute top-2 right-3;
-      }
-    }
-
-    small {
-      @apply text-white font-semibold;
+    &::after {
+      content: "";
+      @apply absolute w-full h-full top-0 left-0 bg-primary-light opacity-90;
+      background: linear-gradient(
+        270deg,
+        theme("colors.primary.darker") 0%,
+        theme("colors.primary.dark") 35%,
+        theme("colors.primary.light") 100%
+      );
     }
   }
 
-  .servicesbox {
-    @apply relative w-full my-4 flex justify-center;
+  .herotext {
+    @apply absolute w-full h-full top-0 left-0 flex justify-center items-center text-secondary;
 
-    .servicescard {
-      @apply bg-white shadow-md rounded-md px-3 py-2 w-full flex flex-wrap justify-between;
-      min-height: 300px;
-      max-height: 300px;
-      transition: max-height 0.75s ease-in-out;
-      overflow: hidden;
+    & > div {
+      @apply prose;
 
-      .service {
-        @apply cursor-pointer p-2 my-4 mx-6 flex flex-col items-center;
-        height: 100px;
-        span {
-          @apply mt-2 text-sm font-semibold text-gray-600;
-          &:hover {
-            @apply text-primary;
-          }
-        }
+      h1 {
+        @apply text-secondary mb-3 bg-gray-50 pl-2;
       }
 
-      .expandbtn {
-        @apply absolute mx-auto left-0 right-0 bg-white rounded-full px-3 py-1 shadow-lg ring-1 ring-primary-light;
-        bottom: -15px;
+      p {
+        @apply mt-1 text-gray-50 font-semibold;
       }
-    }
-
-    .servicescard_expand {
-      max-height: 1000px;
     }
   }
 
-  &:focus-within .dummy::after {
-    @apply opacity-80;
+  .registerform {
+    @apply rounded-md shadow bg-white px-5 py-4 prose;
+    min-height: 300px;
+
+    h2 {
+      @apply text-gray-500 mb-6;
+    }
+
+    .formgroup {
+      @apply pb-5 mb-1 relative;
+      label {
+        @apply block mb-1;
+      }
+      & > input {
+        @apply w-full rounded border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+      }
+
+      select {
+        @apply w-full;
+      }
+
+      .errors {
+        @apply absolute text-xs text-red-500 bottom-0;
+      }
+
+      .phoneinput {
+        @apply w-full;
+      }
+    }
+
+    .buttongroup {
+      @apply flex justify-center;
+    }
+  }
+
+  .errormsg {
+    @apply relative text-xs text-red-500 mt-3 w-full text-center;
   }
 }

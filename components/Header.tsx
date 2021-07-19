@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useRouter } from "next/dist/client/router";
 import PopupOverlay from "./PopupOverlay";
 import LoginPopup from "./LoginPopup";
+import VerifyOtpPopup from "./VerifyOtpPopup";
 import CitySelectionPopup from "./CitySelectionPopup";
 import AppContext from "../context/AppContext";
 import AuthContext from "../context/AuthContext";
@@ -13,8 +14,8 @@ function Header() {
   const {
     isLoginPopupVisible,
     setIsLoginPopupVisible,
-    isCityPopupVisible,
-    setIsCityPopupVisible,
+    isVerifyOtpPopupVisible,
+    setIsVerifyOtpPopupVisible,
     selectedCity,
     isHeaderSearchVisible,
   } = useContext(AppContext);
@@ -27,21 +28,23 @@ function Header() {
   return (
     <>
       <div className="header">
-        <div className="w-full max-w-screen-lg grid grid-cols-12 gap-1 h-full mx-auto">
-          <div className="col-span-2 h-full flex items-center">
+        <div className="w-full max-w-screen-xl grid grid-cols-12 gap-1 h-full mx-auto">
+          <div className="col-span-4 h-full flex items-center">
             <Link href="/">
               <div className="logo">
                 <Image
-                  layout="fill"
                   alt=""
-                  src="/images/logo-small.jpeg"
+                  width={150}
+                  height={65}
+                  src="/images/logo-small.png"
                   objectFit="contain"
-                />
+                />{" "}
+                <span>Partner</span>
               </div>
             </Link>
           </div>
-          <div className="col-span-5 h-full flex items-center justify-center">
-            <div className="searchbox">
+          <div className="col-span-3 h-full flex items-center justify-center">
+            {/* <div className="searchbox">
               <div
                 className="citylocation"
                 onClick={() => setIsCityPopupVisible(true)}
@@ -56,17 +59,17 @@ function Header() {
                   <span className="mdi mdi-magnify"></span>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
           <div className="col-span-5 h-full flex items-center justify-end">
             <div className="navmenu">
-              <div className="menuitem">
+              {/* <div className="menuitem">
                 <span>Services</span>
                 <div className="submenu"></div>
               </div>
               <div className="menuitem">
                 <span>Partner</span>
-              </div>
+              </div> */}
               {!user && (
                 <div className="actionitem login">
                   <button onClick={handleLoginButton} className="button-one">
@@ -103,7 +106,7 @@ function Header() {
         </div>
       </div>
       <div className="headerplaceholder"></div>
-      <PopupOverlay
+      {/* <PopupOverlay
         visible={isCityPopupVisible}
         onClose={() => {
           setIsCityPopupVisible(false);
@@ -111,7 +114,7 @@ function Header() {
         enableClose={selectedCity != null}
       >
         <CitySelectionPopup />
-      </PopupOverlay>
+      </PopupOverlay> */}
       <PopupOverlay
         visible={isLoginPopupVisible}
         onClose={() => {
@@ -119,6 +122,16 @@ function Header() {
         }}
       >
         <LoginPopup />
+      </PopupOverlay>
+
+      <PopupOverlay
+        visible={isVerifyOtpPopupVisible}
+        onClose={() => {
+          setIsVerifyOtpPopupVisible(false);
+        }}
+        enableClose={false}
+      >
+        <VerifyOtpPopup />
       </PopupOverlay>
     </>
   );
