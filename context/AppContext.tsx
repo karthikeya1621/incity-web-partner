@@ -46,7 +46,7 @@ export const AppProvider = (props: any) => {
   const getServicesList = async () => {
     try {
       const response = await fetch(
-        "https://pochieshomeservices.com/RestApi/api/category/categoryList"
+        "https://pochieshomeservices.com/RestApi/api/category/categoryList?key=incitykey!"
       );
       const services = await response.json();
       if (services.data && services.data.length) {
